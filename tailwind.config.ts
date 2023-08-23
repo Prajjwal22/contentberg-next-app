@@ -15,6 +15,25 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }: {addUtilities: Function}) {
+      const newUtilities = {
+        '.h-webkit-fill-available': {
+          'height': '-webkit-fill-available',
+        },
+        '.w-webkit-fill-available': {
+          'width': '-webkit-fill-available',
+        },
+        '.h-600': {
+          'height': '600px',
+        },
+        '.min-h-600': {
+          'min-height': '600px',
+        }
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 }
 export default config
