@@ -13,7 +13,7 @@ export default function ThreeColGrid({ posts }: ThreeColGridProps) {
       <SectionHeader />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-5">
         {posts.slice(7, 13).map((post) => (
-          <SmallCard post={post} />
+          <SmallCard key={post.id} post={post} />
         ))}
       </div>
     </section>
