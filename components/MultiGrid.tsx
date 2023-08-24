@@ -18,7 +18,7 @@ export default function MultiGrid({ posts }: MultiGridProps) {
         </div>
         <div className="col-span-2 grid grid-cols-2 gap-4">
           {posts.slice(11, 15).map((post) => (
-            <TinyCard post={post} />
+            <TinyCard key={post.id} post={post} />
           ))}
         </div>
       </div>
