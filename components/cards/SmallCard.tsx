@@ -1,7 +1,7 @@
 import { Post, SinglePost } from "@/lib/types";
 import Image from "next/image";
 import React, { useMemo } from "react";
-import * as DOMPurify from 'dompurify';
+import * as DOMPurify from "isomorphic-dompurify";
 import { dateFormatter, getReadingTime } from "@/lib/utils";
 import Link from "next/link";
 

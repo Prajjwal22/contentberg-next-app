@@ -1,7 +1,7 @@
 import { Post } from "@/lib/types";
 import Image from "next/image";
 import React from "react";
-import * as DOMPurify from "dompurify";
+import * as DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 
 interface BigCardProps {

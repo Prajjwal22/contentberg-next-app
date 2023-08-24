@@ -4,7 +4,7 @@ export const fetchPosts = async ():Promise<Post[]>  => {
   try {
     const response = await fetch(
       "https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&per_page=20",
-      { method: "GET" }
+      { cache:'force-cache' }
     );
     const data = await response.json();
     return data;

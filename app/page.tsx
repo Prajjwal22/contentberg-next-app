@@ -1,4 +1,3 @@
-"use client";
 
 import React, { useEffect, useState } from "react";
 import FeaturedPosts from "@/components/FeaturedPosts";
@@ -11,19 +10,8 @@ import ThreeColGrid from "@/components/ThreeColGrid";
 //   posts: Post[];
 // }
 
-export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const fetchAndSetPosts = async () => {
-      const fetchedPosts = await fetchPosts();
-      setPosts(fetchedPosts);
-    };
-
-    fetchAndSetPosts();
-  }, []);
-
-  console.log(posts);
+export default async function Home() {
+const posts = await fetchPosts()
 
   return (
     <main className="max-w-6xl m-auto my-6 p-2">

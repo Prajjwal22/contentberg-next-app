@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import { dateFormatter, getReadingTime } from "@/lib/utils";
-import DOMPurify from 'isomorphic-dompurify';
+import DOMPurify from "isomorphic-dompurify";
 import Lottie from "lottie-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import ImagePlaceholder from "../../lottie/animation_llncsb4x.json";
 import { Post, SinglePost, WpTerm } from "@/lib/types";
 
 interface SinleContentProps {
-  post:SinglePost
+  post: SinglePost;
 }
 
 export default function SingleTemplate({ post }: SinleContentProps) {
@@ -25,7 +25,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
   console.log(post);
   return (
     <div className="w-full relative">
-      {post?.jetpack_featured_media_url ? (
+      {post.jetpack_featured_media_url ? (
         <Image
           alt={post?.title.rendered}
           width={1100}
@@ -34,18 +34,18 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           className="object-cover h-72 md:min-h-600 md:h-600 w-full"
         />
       ) : (
-        <div className="bg-gray-100 min-h-600 h-600 w-full">
-          <Lottie
-            height={1100}
-            width={600}
-            autoplay={true}
-            animationData={ImagePlaceholder}
-            loop={true}
-          />
-        </div>
+      <div className="bg-gray-100 min-h-600 h-600 w-full">
+        <Lottie
+          height={600}
+          width={1100}
+          autoplay={true}
+          animationData={ImagePlaceholder}
+          loop={true}
+        />
+      </div>
       )}
-      <div className="flex items-center justify-between absolute bottom-0 p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0)">
-        <div className="flex flex-col items-start gap-2  ">
+      <div className="flex items-center justify-between absolute  bottom-0 p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0) ">
+        <div className="flex flex-col items-start gap-2 hover:-translate-y-4 ease-in-out transition-all duration-300">
           <div className="flex gap-2 flex-wrap">
             {Array.isArray(categories) &&
               categories.map((category) => (
@@ -61,7 +61,9 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           </div>
           <h1
             className="text-2xl md:text-4xl font-bold text-white "
-            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post?.title?.rendered) }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(post?.title?.rendered),
+            }}
           ></h1>
           <div className="uppercase font-bold text-white flex flex-row flex-wrap gap-2 text-xs">
             <span>BY {post?.modified_by}</span> -{" "}

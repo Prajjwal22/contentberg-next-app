@@ -1,5 +1,5 @@
 import { Post, WpTerm } from "@/lib/types";
-import DOMPurify from "dompurify";
+import * as DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import React from "react";
 
