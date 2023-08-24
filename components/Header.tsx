@@ -30,7 +30,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="h-20 w-full shadow-md border-t-4 mb-6 bg-white border-emerald-950 p-2">
+    <header className="h-20 w-full shadow-md border-t-4 md:mb-6 bg-white border-emerald-950 p-2">
       <div className="flex flex-row items-center m-auto max-w-6xl justify-between h-full">
         <div className="block">
           <Link href="/"><Image
@@ -51,7 +51,7 @@ export default function Header() {
         </ul>
         {screenWidth < 770 ? (
           <nav
-            className={` absolute h-webkit-fill-available w-screen top-20 transition-all duration-500 ${
+            className={` absolute h-webkit-fill-available w-screen top-20 transition-all duration-500 z-50 ${
               showMenu ? "left-0" : "-left-full"
             }  flex items-center justify-around bg-black text-white`}
           >
