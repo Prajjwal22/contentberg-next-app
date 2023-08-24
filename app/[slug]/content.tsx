@@ -93,7 +93,7 @@ export default function SingleContent({ post }: SingleContentProps) {
         </div>
 
         <div
-          className="md:col-span-2 col-span-3 text-lg text-gray-600 leading-8 list-inside"
+          className="md:col-span-2 col-span-3 text-gray-600 leading-8 list-inside"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(post.content.rendered),
           }}
