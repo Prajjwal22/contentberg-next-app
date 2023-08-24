@@ -10,15 +10,18 @@ interface TinyCardProps {
 export default function TinyCard({ post }: TinyCardProps) {
   return (
     <div className="flex flex-col items-center gap-4">
-
+      <Link href={post.slug}>
         <Image
-          className=" object-contain"
+          className=" object-contain shadow-xl transition-all duration-300 ease-linear hover:-translate-y-2 hover:brightness-110"
           src={post?.jetpack_featured_media_url}
           width={350}
           height={350}
           alt="post tiel"
         />
-      <Link href={post.slug}><span className="text-lg font-bold">{post?.title.rendered}</span></Link>
+      </Link>
+      <Link href={post.slug}>
+        <span className="text-lg font-bold">{post?.title.rendered}</span>
+      </Link>
     </div>
   );
 }

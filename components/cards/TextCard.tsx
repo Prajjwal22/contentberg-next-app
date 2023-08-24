@@ -23,7 +23,7 @@ export default function TextCard({ post }: TextCardProps) {
       <span className="text-lg md:text-xl font-bold">
         <Link href={post.slug}>{post.title.rendered}</Link>
       </span>
-      <span className="text-sm text-gray-400 font-bold">
+      <span className="text-sm text-gray-400 font-bold uppercase">
         10 Aug 2023 - 5 Mins Read
       </span>
     </div>

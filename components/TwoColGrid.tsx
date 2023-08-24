@@ -10,7 +10,7 @@ interface TwoColGridProps {
 
 export default function TwoColGrid({ posts }: TwoColGridProps) {
   return (
-    <section className="w-full flex flex-col items-center">
+    <section className="w-full flex flex-col items-center mb-5">
       <SectionHeader />
       <div className="">
         <div className="flex flex-col md:flex-row gap-5">
@@ -19,7 +19,7 @@ export default function TwoColGrid({ posts }: TwoColGridProps) {
           ))}
         </div>
       </div>
-      <Button />
+      {/* <Button / */}
     </section>
   );
 }

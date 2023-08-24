@@ -30,7 +30,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="h-20 w-full shadow-md border-t-4 mb-6 bg-white border-emerald-950">
+    <header className="h-20 w-full shadow-md border-t-4 mb-6 bg-white border-emerald-950 p-2">
       <div className="flex flex-row items-center m-auto max-w-6xl justify-between h-full">
         <div className="block">
           <Link href="/"><Image
@@ -43,9 +43,11 @@ export default function Header() {
         </div>
         <ul className="hidden md:flex flex-row gap-8">
           <li className="cursor-pointer">Home</li>
-          <li>News</li>
-          <li>Status</li>
-          <li>Finance</li>
+          <li>Insurance Deppreciation Waiver</li>
+          <li>iOS</li>
+          <li>Credit Card</li>
+          <li>Bike EMI Calculator</li>
+
         </ul>
         {screenWidth < 770 ? (
           <nav
@@ -54,10 +56,10 @@ export default function Header() {
             }  flex items-center justify-around bg-black text-white`}
           >
             <ul className="flex justify-between items-stretch flex-col gap-12">
-              <li className="uppercase font-bold text-5xl">Home</li>
-              <li className="uppercase font-bold text-5xl">News</li>
-              <li className="uppercase font-bold text-5xl">Status</li>
-              <li className="uppercase font-bold text-5xl">Finance</li>
+              <li className="uppercase font-bold text-5xl">Insurabce Depreciation Waiver</li>
+              <li className="uppercase font-bold text-5xl">iOS</li>
+              <li className="uppercase font-bold text-5xl">Credit Card</li>
+              <li className="uppercase font-bold text-5xl">Bike EMI Calculator</li>
             </ul>
           </nav>
         ) : null}

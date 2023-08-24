@@ -11,6 +11,7 @@ export type Post = {
   content: {
     rendered: string;
   };
+  modified:Date;
   excerpt: {
     rendered: string;
   };

@@ -19,7 +19,7 @@ export default function Footer() {
             </ul>
 
             <div className="flex justify-between w-full border-t border-gray-200 pt-3">
-                <span>Copyright LoveIgnitePool 2023</span>
+                <span>Copyright sit 2023</span>
                 <span>All Rights Reserevd</span>
             </div>
         </div>

@@ -27,10 +27,10 @@ export default function SmallCard({ post }: SmallCardProps) {
       </div>
       <Link href={post.slug}><span className="text-xl md:text-2xl font-bold mb-4" dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(post?.title?.rendered)}}>
       </span></Link>
-      <span className="text-sm font-bold text-gray-400 mb-3">
+      <span className="text-sm font-bold text-gray-400 mb-3 uppercase">
         {dateFormatter(post.date_gmt)} - By {post?.author_info?.display_name || "Editorial Staff"}
       </span>
-      <p className="text-gray-500 overflow-hidden leading-7 line-clamp-2	" dangerouslySetInnerHTML={{__html : DOMPurify.sanitize(post?.excerpt.rendered)}}></p>
+      <span className="text-gray-500 overflow-hidden leading-7 line-clamp-2	" dangerouslySetInnerHTML={{__html : DOMPurify.sanitize(post?.excerpt.rendered)}}></span>
     </div>
   );
 }
