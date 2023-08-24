@@ -1,28 +1,15 @@
+'use client'
+
+import { SinglePost } from "@/lib/types";
 import { getReadingTime } from "@/lib/utils";
-import DOMPurify from "dompurify";
+import DOMPurify from 'isomorphic-dompurify';
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FiClock } from "react-icons/fi";
 
 interface SingleContentProps {
-  post: {
-    title: { rendered: string };
-    id: number;
-    slug: string;
-    content: { rendered: string };
-    jetpack_featured_media_url: string;
-    modified_by: string;
-    date_gmt: Date;
-    _embedded: {
-      "wp:term": Array<{
-        id: number;
-        link: string;
-        name: string;
-        slug: string;
-      }>;
-    };
-  };
+  post: SinglePost;
 }
 
 export default function SingleContent({ post }: SingleContentProps) {
@@ -30,14 +17,14 @@ export default function SingleContent({ post }: SingleContentProps) {
   const [toc, setToc] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    const parsedContent = DOMPurify.sanitize(post.content.rendered)
-    const contentDiv = document.createElement('div')
-    contentDiv.innerHTML = parsedContent
+    const parsedContent = DOMPurify.sanitize(post.content.rendered);
+    const contentDiv = document.createElement("div");
+    contentDiv.innerHTML = parsedContent;
 
-    const headings = contentDiv.querySelectorAll('h1, h2')
+    const headings = contentDiv.querySelectorAll("h1, h2");
     const links = Array.from(headings).map((heading, index) => {
       const headingText = heading.textContent || "";
-      const linkId = String(heading.textContent).split(' ').join('_');
+      const linkId = String(heading.textContent).split(" ").join("_");
 
       return (
         <li className="mb-1" key={linkId}>
@@ -45,16 +32,14 @@ export default function SingleContent({ post }: SingleContentProps) {
         </li>
       );
     });
-    console.log(headings)
+    console.log(headings);
 
     setToc(links);
   }, [post.content.rendered]);
 
+  useEffect(() => {
+    document.getElementById("toc_container")?.remove();
 
-
-  useEffect(()=>{
-document.getElementById('toc_container')?.remove()
-    
     window.addEventListener("scroll", () => {
       const scrollingHeight = document.documentElement.scrollTop;
       const calcScroll =
@@ -65,11 +50,11 @@ document.getElementById('toc_container')?.remove()
 
       setScrollPosition(totalScroll);
     });
-  },[])
+  }, []);
   return (
     <section className="main-content mt-5 p-2">
       <div className="grid grid-cols-3 justify-items-center">
-        <div className="col-span-1 flex flex-col items-center gap-4 sticky w-9/12 top-1 h-screen">
+        <div className="col-span-1 flex-col items-center gap-4 sticky w-9/12 top-1 h-screen hidden md:flex">
           <div className="flex flex-row items-center gap-2">
             <Image
               src="/profile.webp"
@@ -89,7 +74,7 @@ document.getElementById('toc_container')?.remove()
             player, and gym enthusiast.
           </span>
           <div className="w-full rounded h-1 flex flex-col ">
-          <div className="w-full rounded h-1 flex flex-col items-center bg-purple-300 relative"></div>
+            <div className="w-full rounded h-1 flex flex-col items-center bg-purple-300 relative"></div>
             <span
               style={{ width: `${scrollPosition}%` }}
               className="rounded h-1 bg-purple-600 absolute left-0 ease-in-out "
@@ -108,7 +93,7 @@ document.getElementById('toc_container')?.remove()
         </div>
 
         <div
-          className="col-span-2 text-lg text-gray-600 leading-8 list-inside"
+          className="md:col-span-2 col-span-3 text-lg text-gray-600 leading-8 list-inside"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(post.content.rendered),
           }}

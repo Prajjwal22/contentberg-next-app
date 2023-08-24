@@ -1,4 +1,4 @@
-import { Post } from "@/lib/types";
+import { Post, SinglePost } from "@/lib/types";
 import Image from "next/image";
 import React, { useMemo } from "react";
 import * as DOMPurify from 'dompurify';
@@ -6,7 +6,7 @@ import { dateFormatter, getReadingTime } from "@/lib/utils";
 import Link from "next/link";
 
 interface SmallCardProps {
-  post: Post;
+  post: SinglePost;
 }
 
 export default function SmallCard({ post }: SmallCardProps) {
@@ -28,7 +28,7 @@ export default function SmallCard({ post }: SmallCardProps) {
       <Link href={post.slug}><span className="text-xl md:text-2xl font-bold mb-4" dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(post?.title?.rendered)}}>
       </span></Link>
       <span className="text-sm font-bold text-gray-400 mb-3">
-        {dateFormatter(post.modified)} - By {post?.author_info?.display_name || "Editorial Staff"}
+        {dateFormatter(post.date_gmt)} - By {post?.author_info?.display_name || "Editorial Staff"}
       </span>
       <p className="text-gray-500 overflow-hidden leading-7 line-clamp-2	" dangerouslySetInnerHTML={{__html : DOMPurify.sanitize(post?.excerpt.rendered)}}></p>
     </div>

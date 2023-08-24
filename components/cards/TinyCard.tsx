@@ -1,5 +1,6 @@
 import { Post } from "@/lib/types";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface TinyCardProps {
@@ -17,7 +18,7 @@ export default function TinyCard({ post }: TinyCardProps) {
           height={350}
           alt="post tiel"
         />
-      <span className="text-lg font-bold">{post?.title.rendered}</span>
+      <Link href={post.slug}><span className="text-lg font-bold">{post?.title.rendered}</span></Link>
     </div>
   );
 }

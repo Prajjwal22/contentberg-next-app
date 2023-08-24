@@ -1,62 +1,27 @@
-"use client";
-import { Post, SinglePost } from "@/lib/types";
+import { Post } from "@/lib/types";
 import { fetchPosts, getPostBySlug } from "@/lib/wordpress";
-import React, { useEffect, useState } from "react";
 import SingleTemplate from "./singletemplate";
-import DOMPurify from "dompurify";
 import SingleContent from "./content";
 import RelatedPosts from "@/components/RelatedPosts";
+import { notFound } from "next/navigation"
 
-export default function SinglePost({ params }: { params: { slug: string } }) {
-  const [post, setPost] = useState<{
-    title: { rendered: string };
-    id: number;
-    slug: string;
-    jetpack_featured_media_url: string;
-    content: { rendered: string };
-    modified_by: string;
-    date_gmt: Date;
-    _embedded: {
-      "wp:term": Array<{
-        id: number;
-        link: string;
-        name: string;
-        slug: string;
-      }>;
-    };
-  }>({
-    title: { rendered: "" },
-    id: 0,
-    slug: "",
-    content: { rendered: "" },
-    jetpack_featured_media_url: "",
-    modified_by: "",
-    date_gmt: new Date(),
-    _embedded: {
-      "wp:term": [{ id: 0, link: "", name: "", slug: "" }],
-    },
-  });
-  useEffect(() => {
-    const fetchPostBySlug = async () => {
-      let data = await getPostBySlug(params.slug);
-      setPost(data[0]);
-    };
-    fetchPostBySlug();
-  }, [params.slug]);
 
-  const [allPosts, setAllPosts] = useState<Post[]>([]);
+type Props = {
+  params: {
+      slug: string
+  }
+}
 
-  useEffect(() => {
-    const fetchNextPosts = async () => {
-      let nextPosts = await fetchPosts();
-      setAllPosts(nextPosts);
-    };
-    fetchNextPosts();
-  }, []);
 
-  const categories = post._embedded?.["wp:term"]?.[0];
+export default async function SinglePost({ params: { slug } }: Props) {
+
+  const post = await getPostBySlug(slug)
+
+  if (!post) notFound()
+  const categories = post?._embedded?.["wp:term"]?.[0];
   return (
     <div className="flex flex-col items-center ">
+      {/* {JSON.stringify(post)} */}
       <SingleTemplate post={post} />
       <SingleContent post={post} />
       {Array.isArray(categories) && <RelatedPosts category={categories[0]} />}
@@ -67,4 +32,12 @@ export default function SinglePost({ params }: { params: { slug: string } }) {
       </div> */}
     </div>
   );
+}
+
+// Return a list of `params` to populate the [slug] dynamic segment
+export async function generateStaticParams() {
+  const posts = await fetchPosts()
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }

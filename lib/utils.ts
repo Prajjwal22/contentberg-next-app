@@ -8,7 +8,7 @@ export const dateFormatter = (date: Date) => {
 };
 
 export const getReadingTime = (content: string) => {
-    let words = content.split(" ").length;
+    let words = content?.split(" ").length;
     let readingSpeed = 300
     let readingTime  = words / readingSpeed;
 

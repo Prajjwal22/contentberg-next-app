@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import SmallCard from "./cards/SmallCard";
 import { getPostsByCategory } from "@/lib/wordpress";
@@ -28,11 +30,13 @@ export default function RelatedPosts({ category }: RelatedPostsProps) {
 
   return (
     <section className="flex flex-col gap-4 w-full items-center">
-        <span className="text-2xl font-bold border-b-2 border-b-gray-200">You Might Also Like!</span>
-        <div className="grid grid-cols-4 gap-4 w-full m-auto">
-      {posts.map((post) => (
-        <TinyCard key={post.id} post={post} />
-      ))}
+      <span className="text-2xl font-bold border-b-2 border-b-gray-200">
+        You Might Also Like!
+      </span>
+      <div className="grid grid-cols-4 gap-4 w-full m-auto">
+        {posts.map((post) => (
+          <TinyCard key={post.id} post={post} />
+        ))}
       </div>
     </section>
   );

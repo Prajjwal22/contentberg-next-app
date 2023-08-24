@@ -1,4 +1,6 @@
-export const fetchPosts = async () => {
+import { Post } from "./types";
+
+export const fetchPosts = async ():Promise<Post[]>  => {
   try {
     const response = await fetch(
       "https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&per_page=20",
@@ -12,13 +14,13 @@ export const fetchPosts = async () => {
   }
 };
 
-export const getPostBySlug = async (slug: string) => {
+export const getPostBySlug = async (slug: string): Promise<Post | undefined > => {
   try {
     const response = await fetch(
       `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&slug=${slug}`,{ next: { revalidate: 3600 } }
     );
     const data = await response.json();
-    return data;
+    return data[0];
   } catch (error) {
     console.error("Error fetching posts:", error);
   }

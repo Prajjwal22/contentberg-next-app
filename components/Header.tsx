@@ -30,8 +30,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="h-20 w-full shadow-md border-t-4 px-4 mb-6 bg-white border-emerald-950">
-      <div className="flex flex-row items-center justify-between h-full md:mx-28">
+    <header className="h-20 w-full shadow-md border-t-4 mb-6 bg-white border-emerald-950">
+      <div className="flex flex-row items-center m-auto max-w-6xl justify-between h-full">
         <div className="block">
           <Link href="/"><Image
             className="bg-contain max-w-xs h-auto"

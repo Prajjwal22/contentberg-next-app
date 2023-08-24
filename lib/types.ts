@@ -1,7 +1,14 @@
 export type Post = {
-  id: number;
-  modified: Date;
   title: {
+    rendered: string;
+  };
+  _embedded: {
+    "wp:term": WpTerm[];
+  };
+  id: number;
+  modified_by: string;
+  date_gmt: Date;
+  content: {
     rendered: string;
   };
   excerpt: {
@@ -13,9 +20,6 @@ export type Post = {
     author_link: string;
   };
   jetpack_featured_media_url: string;
-  _embedded: {
-    "wp:term": WpTerm[];
-  };
 };
 
 export type WpTerm = {
@@ -24,9 +28,18 @@ export type WpTerm = {
 };
 
 export interface SinglePost {
+  title: {
+    rendered: string;
+  };
+  _embedded: {
+    "wp:term": WpTerm[];
+  };
   id: number;
-  modified: string;
-  title:string
+  modified_by: string;
+  date_gmt: Date;
+  content: {
+    rendered: string;
+  };
   excerpt: {
     rendered: string;
   };
@@ -35,8 +48,5 @@ export interface SinglePost {
     display_name: string;
     author_link: string;
   };
-  featured_image_src: string;
-  _embedded: {
-    "wp:term": WpTerm[];
-  };
+  jetpack_featured_media_url: string;
 }
