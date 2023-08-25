@@ -51,3 +51,10 @@ export interface SinglePost {
   };
   jetpack_featured_media_url: string;
 }
+
+
+export type SearchPosts = {
+  title: string;
+  id: number
+  url: string
+} 

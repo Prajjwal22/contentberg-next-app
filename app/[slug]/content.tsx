@@ -5,12 +5,15 @@ import { getReadingTime } from "@/lib/utils";
 import DOMPurify from 'isomorphic-dompurify';
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { FaCopy, FaEnvelope, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { FiClock } from "react-icons/fi";
 
 interface SingleContentProps {
   post: SinglePost;
 }
+
 
 export default function SingleContent({ post }: SingleContentProps) {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
@@ -51,6 +54,8 @@ export default function SingleContent({ post }: SingleContentProps) {
       setScrollPosition(totalScroll);
     });
   }, []);
+
+  const path = usePathname()
   return (
     <section className="main-content mt-5 p-2">
       <div className="grid grid-cols-3 justify-items-center">
@@ -89,6 +94,15 @@ export default function SingleContent({ post }: SingleContentProps) {
             <div className="w-full list-decimal text-gray-600 h-96 overflow-scroll">
               {toc}
             </div>
+            <div className="mt-5 font-bold">Share it with your friends:</div>
+            <span className="flex items-center gap-3 mt-3">
+              <FaFacebookF className="text-blue-500 cursor-pointer" size={20}/>
+              <FaEnvelope className="text-red-400 cursor-pointer" size={20}/>
+              <FaTwitter className="text-blue-400 cursor-pointer" size={20}/>
+              <FaCopy onClick={()=> {
+                navigator.clipboard.writeText(process.env.WORDPRESS_SITE_URL + path)
+              }} className="text-slate-500 cursor-pointer" size={20}/>
+            </span>
           </div>
         </div>
 

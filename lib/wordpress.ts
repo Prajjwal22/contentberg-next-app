@@ -38,3 +38,15 @@ export const getPostsByCategory = async (id: number) => {
     console.error("Error fetching posts:", error);
   }
 }
+
+export const getPostsBySearch = async(query: string)=> {
+  try {
+    const response = await fetch(
+      `https://lovegunitepool.com/wp-json/wp/v2/search/?subtype=post&search=${query}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+}
