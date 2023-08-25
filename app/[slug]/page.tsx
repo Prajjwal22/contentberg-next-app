@@ -3,21 +3,19 @@ import { fetchPosts, getPostBySlug } from "@/lib/wordpress";
 import SingleTemplate from "./singletemplate";
 import SingleContent from "./content";
 import RelatedPosts from "@/components/RelatedPosts";
-import { notFound } from "next/navigation"
-
+import { notFound } from "next/navigation";
+import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
   params: {
-      slug: string
-  }
-}
-
+    slug: string;
+  };
+};
 
 export default async function SinglePost({ params: { slug } }: Props) {
+  const post = await getPostBySlug(slug);
 
-  const post = await getPostBySlug(slug)
-
-  if (!post) notFound()
+  if (!post) notFound();
   const categories = post?._embedded?.["wp:term"]?.[0];
   return (
     <div className="flex flex-col items-center ">
@@ -36,7 +34,7 @@ export default async function SinglePost({ params: { slug } }: Props) {
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
-  const posts = await fetchPosts()
+  const posts = await fetchPosts();
   return posts.map((post) => ({
     slug: post.slug,
   }));
