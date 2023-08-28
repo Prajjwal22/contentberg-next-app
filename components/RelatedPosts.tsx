@@ -33,7 +33,7 @@ export default function RelatedPosts({ category }: RelatedPostsProps) {
       <span className="text-2xl font-bold border-b-2 border-b-gray-200">
         You Might Also Like!
       </span>
-      <div className="grid grid-cols-4 gap-4 w-full m-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full m-auto">
         {posts.map((post) => (
           <TinyCard key={post.id} post={post} />
         ))}

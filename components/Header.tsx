@@ -54,7 +54,7 @@ export default function Header() {
           <li>Credit Card</li>
           <li>Bike EMI Calculator</li>
         </ul>
-        <div className="ml-auto mr-5" onClick={()=>handleSearchOpen(true)}>
+        <div className="ml-auto md:ml-0 mr-5" onClick={()=>handleSearchOpen(true)}>
           <FaSearch size={20}/>
         </div>
         {isOpen && <Modal handleSearchOpen={()=>handleSearchOpen(false)}/>}
