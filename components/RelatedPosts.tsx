@@ -29,7 +29,7 @@ export default function RelatedPosts({ category }: RelatedPostsProps) {
   console.log(category.id);
 
   return (
-    <section className="flex flex-col gap-4 w-full items-center">
+    <section className="flex flex-col gap-4 w-full items-center p-2">
       <span className="text-2xl font-bold border-b-2 border-b-gray-200">
         You Might Also Like!
       </span>

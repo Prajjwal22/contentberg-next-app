@@ -1,4 +1,5 @@
 import { Post, WpTerm } from "@/lib/types";
+import { dateFormatter } from "@/lib/utils";
 import * as DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import React from "react";
@@ -24,7 +25,7 @@ export default function TextCard({ post }: TextCardProps) {
         <Link href={post.slug}>{post.title.rendered}</Link>
       </span>
       <span className="text-sm text-gray-400 font-bold uppercase">
-        10 Aug 2023 - 5 Mins Read
+        {dateFormatter(post.modified)} - 5 Mins Read
       </span>
     </div>
   );

@@ -51,23 +51,25 @@ export default function Pagination() {
           : posts.map((post) => <SmallCard key={post.id} post={post} />)}
       </div>
       <div className="m-auto mt-10 text-md flex gap-3 items-center justify-center">
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded"
-        >
-          Previous
-        </button>
+        {currentPage === 1 ? null : (
+          <button
+            onClick={handlePreviousPage}
+            className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded"
+          >
+            Previous
+          </button>
+        )}
         <span>
           Page {currentPage} of {totalPages}
         </span>
-        <button
-          className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+        {currentPage === totalPages ? null : (
+          <button
+            className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded"
+            onClick={handleNextPage}
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

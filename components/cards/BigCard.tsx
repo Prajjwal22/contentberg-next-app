@@ -28,7 +28,7 @@ export default function BigCard({ posts }: BigCardProps) {
         </span>
       </Link>
       <span className="text-sm font-bold text-gray-400 mb-3 uppercase">
-       {dateFormatter(posts[0].date_gmt)} - 5 MINS READ
+       {dateFormatter(posts[0].modified)} - 5 MINS READ
       </span>
        <span
         className="text-gray-500 overflow-hidden line-clamp-2"
