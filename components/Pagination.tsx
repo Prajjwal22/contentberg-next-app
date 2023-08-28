@@ -1,7 +1,11 @@
 "use client";
 
 import { Post } from "@/lib/types";
-import { fetchPosts, fetchTotalPostsCount, getPaginatedPosts } from "@/lib/wordpress";
+import {
+  fetchPosts,
+  fetchTotalPostsCount,
+  getPaginatedPosts,
+} from "@/lib/wordpress";
 import React, { useEffect, useState } from "react";
 import SmallCard from "./cards/SmallCard";
 
@@ -19,7 +23,7 @@ export default function Pagination() {
       const posts = await getPaginatedPosts(currentPage, perPage);
       setPosts(posts);
       const totalItems = await fetchTotalPostsCount();
-      setTotalPages(Math.ceil(totalItems/perPage));
+      setTotalPages(Math.ceil(totalItems / perPage));
       setLoading(false);
       console.log(currentPage);
     };
@@ -47,13 +51,21 @@ export default function Pagination() {
           : posts.map((post) => <SmallCard key={post.id} post={post} />)}
       </div>
       <div className="m-auto mt-10 text-md flex gap-3 items-center justify-center">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1} className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded"
+        >
           Previous
         </button>
         <span>
           Page {currentPage} of {totalPages}
         </span>
-        <button className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded" onClick={handleNextPage} disabled={currentPage === totalPages}>
+        <button
+          className="bg-blue-400 text-white px-3 py-1 cursor-pointer rounded"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
           Next
         </button>
       </div>

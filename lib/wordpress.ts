@@ -56,8 +56,7 @@ export const getPostsBySearch = async (query: string) => {
 export const getPaginatedPosts = async (currentPage: number, perPage: number) => {
   try {
     const response = await fetch(
-      `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&page=${currentPage}&per_page=${perPage}`,
-      { cache: "force-cache" }
+      `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&page=${currentPage}&per_page=${perPage}`
     );
     const data = await response.json();
     return data;
