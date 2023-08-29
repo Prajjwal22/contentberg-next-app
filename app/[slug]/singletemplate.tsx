@@ -31,7 +31,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           alt={post?.title.rendered}
           width={1100}
           height={600}
-          priority
+          // priority
           src={post?.jetpack_featured_media_url}
           className="object-cover h-72 md:min-h-600 md:h-600 w-full"
         />
