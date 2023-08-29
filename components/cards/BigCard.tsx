@@ -1,15 +1,22 @@
 import { Post } from "@/lib/types";
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import * as DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
-import { dateFormatter } from "@/lib/utils";
+import { dateFormatter, getReadingTime } from "@/lib/utils";
 
 interface BigCardProps {
   posts: Post[];
 }
 
 export default function BigCard({ posts }: BigCardProps) {
+
+
+  const readingTime = useMemo(
+    () => getReadingTime(posts[0]?.content?.rendered),
+    [posts[0]]
+  );
+
 
   return (
     <div className="flex flex-col items-start">
@@ -28,7 +35,7 @@ export default function BigCard({ posts }: BigCardProps) {
         </span>
       </Link>
       <span className="text-sm font-bold text-gray-400 mb-3 uppercase">
-       {dateFormatter(posts[0].modified)} - 5 MINS READ
+       {dateFormatter(posts[0].modified)} - {readingTime} MINS READ
       </span>
        <span
         className="text-gray-500 overflow-hidden line-clamp-2"

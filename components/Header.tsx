@@ -37,14 +37,14 @@ export default function Header() {
 
   return (
     <header className="h-20 w-full shadow-md border-t-4 md:mb-6 bg-white border-emerald-950 p-2">
-      <div className="flex flex-row items-center m-auto max-w-6xl justify-between h-full">
+      <nav className="flex flex-row items-center m-auto max-w-6xl justify-between h-full">
         <div className="block">
           <Link href="/"><Image
             className="bg-contain max-w-xs h-auto"
             src="/lgp.webp"
             alt="HHW Logo"
             width={150}
-            height={100}
+            height={90}
           /></Link>
         </div>
         <ul className="hidden md:flex flex-row gap-8">
@@ -75,7 +75,7 @@ export default function Header() {
         <div className="md:hidden" onClick={handleMenuOpen}>
           {!showMenu ? <FaBars size={25} /> : <FaTimes size={25} />}
         </div>
-      </div>
+      </nav>
     </header>
   );
 }

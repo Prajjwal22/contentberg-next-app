@@ -1,8 +1,9 @@
 import { Post, WpTerm } from "@/lib/types";
-import { dateFormatter } from "@/lib/utils";
+import { dateFormatter, getReadingTime } from "@/lib/utils";
+import { read } from "fs";
 import * as DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 
 type TextCardProps = {
   post: Post;
@@ -11,13 +12,19 @@ type TextCardProps = {
 export default function TextCard({ post }: TextCardProps) {
   const categories = post._embedded?.["wp:term"]?.[0];
 
+  const readingTime = useMemo(
+    () => getReadingTime(post?.content?.rendered),
+    [post]
+  );
+
+
 
   return (
     <div className="flex flex-col items-start gap-1 mt-2 mb-4">
       {Array.isArray(categories) && categories.map((category, i) => (
         <span
           key={i}
-          className="font-bold text-xs md:text-sm tracking-wider text-blue-700 uppercase"
+          className="font-bold text-xs md:text-sm tracking-wide text-blue-700 uppercase"
         dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(category.name)}}>
         </span>
       ))}
@@ -25,7 +32,7 @@ export default function TextCard({ post }: TextCardProps) {
         <Link href={post.slug}>{post.title.rendered}</Link>
       </span>
       <span className="text-sm text-gray-400 font-bold uppercase">
-        {dateFormatter(post.modified)} - 5 Mins Read
+        {dateFormatter(post.modified)} - {readingTime} Mins Read
       </span>
     </div>
   );

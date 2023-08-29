@@ -5,7 +5,7 @@ import DOMPurify from "isomorphic-dompurify";
 import Lottie from "lottie-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 import { FaFacebookF, FaReddit, FaTwitter } from "react-icons/fa";
 import ImagePlaceholder from "../../lottie/animation_llncsb4x.json";
 import { Post, SinglePost, WpTerm } from "@/lib/types";
@@ -20,6 +20,11 @@ export default function SingleTemplate({ post }: SinleContentProps) {
     return <div>Loading...</div>;
   }
 
+  const readingTime = useMemo(
+    () => getReadingTime(post?.content?.rendered),
+    [post]
+  );
+
   const categories = post._embedded?.["wp:term"]?.[0];
 
   console.log(post);
@@ -30,19 +35,20 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           alt={post?.title.rendered}
           width={1100}
           height={600}
+          priority
           src={post?.jetpack_featured_media_url}
           className="object-cover h-72 md:min-h-600 md:h-600 w-full"
         />
       ) : (
-      <div className="bg-gray-100 min-h-600 h-600 w-full">
-        <Lottie
-          height={600}
-          width={1100}
-          autoplay={true}
-          animationData={ImagePlaceholder}
-          loop={true}
-        />
-      </div>
+        <div className="bg-gray-100 min-h-600 h-600 w-full">
+          <Lottie
+            height={600}
+            width={1100}
+            autoplay={true}
+            animationData={ImagePlaceholder}
+            loop={true}
+          />
+        </div>
       )}
       <div className="flex items-center justify-between absolute  bottom-0 p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0) ">
         <div className="flex flex-col items-start gap-2 hover:-translate-y-4 ease-in-out transition-all duration-300">
@@ -68,7 +74,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           <div className="uppercase font-bold text-white flex flex-row flex-wrap gap-2 text-xs">
             <span>BY {post?.modified_by}</span> -{" "}
             <span>{dateFormatter(post?.date_gmt)}</span> -
-            <span>{getReadingTime(post?.content?.rendered)} MINS READ</span>
+            <span>{readingTime} MINS READ</span>
           </div>
         </div>
         <span className="flex flex-row gap-4">

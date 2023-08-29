@@ -6,7 +6,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FaCopy, FaEnvelope, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { FiClock } from "react-icons/fi";
 
@@ -55,6 +55,11 @@ export default function SingleContent({ post }: SingleContentProps) {
     });
   }, []);
 
+  const readingTime = useMemo(
+    () => getReadingTime(post?.content?.rendered),
+    [post]
+  );
+
   const path = usePathname()
   return (
     <section className="main-content mt-5 p-2">
@@ -87,7 +92,7 @@ export default function SingleContent({ post }: SingleContentProps) {
           </div>
           <span className="flex items-center gap-3">
             <FiClock size={25} />
-            {`${getReadingTime(post.content.rendered)} minutes read`}
+            {`${readingTime} minutes read`}
           </span>
           <div className="border-t-2 border-gray-100 w-full p-2 flex flex-col items-center">
             <span className="text-md font-bold my-3 ">Table of Content</span>

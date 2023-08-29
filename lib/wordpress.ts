@@ -32,7 +32,7 @@ export const getPostBySlug = async (
 export const getPostsByCategory = async (id: number) => {
   try {
     const response = await fetch(
-      `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&category=${id}&per_page=4`
+      `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&categories=${id}&per_page=4`
     );
     const data = await response.json();
     return data;

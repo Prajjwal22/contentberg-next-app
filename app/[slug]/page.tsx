@@ -17,6 +17,9 @@ export default async function SinglePost({ params: { slug } }: Props) {
 
   if (!post) notFound();
   const categories = post?._embedded?.["wp:term"]?.[0];
+
+  console.log(post)
+
   return (
     <div className="flex flex-col items-center ">
       {/* {JSON.stringify(post)} */}
