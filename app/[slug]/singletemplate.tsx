@@ -15,10 +15,6 @@ interface SinleContentProps {
 }
 
 export default function SingleTemplate({ post }: SinleContentProps) {
-  if (!post) {
-    // Handle the case where the post is not available yet
-    return <div>Loading...</div>;
-  }
 
   const readingTime = useMemo(
     () => getReadingTime(post?.content?.rendered),
