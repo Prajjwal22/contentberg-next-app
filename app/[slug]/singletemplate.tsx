@@ -9,6 +9,7 @@ import React, { useMemo } from "react";
 import { FaFacebookF, FaReddit, FaTwitter } from "react-icons/fa";
 import ImagePlaceholder from "../../lottie/animation_llncsb4x.json";
 import { Post, SinglePost, WpTerm } from "@/lib/types";
+import HTMLReactParser from "html-react-parser";
 
 interface SinleContentProps {
   post: SinglePost;
@@ -23,7 +24,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
 
   const categories = post._embedded?.["wp:term"]?.[0];
 
-  console.log(post);
+  // console.log(post);
   return (
     <div className="w-full relative">
       {post.jetpack_featured_media_url ? (
@@ -46,6 +47,9 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           />
         </div>
       )}
+      <div className="w-full absolute top-0 left-0 p-4 text-white text-sm bg-gradient-to-b from-black/80 to-rgb(0-0-0) ">
+        {`Home >> ${Array.isArray(categories) && HTMLReactParser(categories[0].name)} >> ${HTMLReactParser(post?.title?.rendered)}`}
+      </div>
       <div className="flex items-center justify-between absolute  bottom-0 p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0) ">
         <div className="flex flex-col items-start gap-2 hover:-translate-y-4 ease-in-out transition-all duration-300">
           <div className="flex gap-2 flex-wrap">
@@ -68,7 +72,8 @@ export default function SingleTemplate({ post }: SinleContentProps) {
             }}
           ></h1>
           <div className="uppercase font-bold text-white flex flex-row flex-wrap gap-2 text-xs">
-            <span>BY {post?.modified_by}</span> -{" "}
+            <span>Reviewed By James Atlas</span> -{" "}
+            <span>Fact checked by Jeremy Hine</span> -{" "}
             <span>{dateFormatter(post?.date_gmt)}</span> -
             <span>{readingTime} MINS READ</span>
           </div>

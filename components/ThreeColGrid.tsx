@@ -8,7 +8,6 @@ interface ThreeColGridProps {
   posts: Post[];
 }
 export default function ThreeColGrid({ posts }: ThreeColGridProps) {
-  console.log(posts);
   return (
     <section className="w-full flex flex-col items-center mb-5">
       <SectionHeader />

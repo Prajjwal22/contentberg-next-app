@@ -21,13 +21,13 @@ export default function TextCard({ post }: TextCardProps) {
 
   return (
     <div className="flex flex-col items-start gap-1 mt-2 mb-4">
-      {Array.isArray(categories) && categories.map((category, i) => (
+      {/* {Array.isArray(categories) && categories.map((category, i) => (
         <span
           key={i}
           className="font-bold text-xs md:text-sm tracking-wide text-blue-700 uppercase"
         dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(category.name)}}>
         </span>
-      ))}
+      ))} */}
       <span className="text-lg md:text-xl font-bold">
         <Link href={post.slug}>{post.title.rendered}</Link>
       </span>

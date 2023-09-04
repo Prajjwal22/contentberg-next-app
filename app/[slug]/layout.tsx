@@ -1,5 +1,5 @@
 import { Post } from "@/lib/types";
-import { getPostBySlug } from "@/lib/wordpress";
+import { fetchRankMathSEO, getPostBySlug } from "@/lib/wordpress";
 import { Metadata, ResolvingMetadata } from "next";
 import React from "react";
 
@@ -9,7 +9,7 @@ type Props = {
   };
 };
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function layout({ children, params }: { children: React.ReactNode; params: {slug:string} }) {
   return <article className="max-w-6xl m-auto">{children}</article>;
 }
 
@@ -20,7 +20,6 @@ export async function generateMetadata(
   const slug = params.slug;
 
   const post = await getPostBySlug(slug);
-
   return {
     title: post?.title.rendered,
     description: post?.excerpt.rendered,

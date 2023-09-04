@@ -26,9 +26,8 @@ export default function RelatedPosts({ category }: RelatedPostsProps) {
 
     fetchRelatedPosts();
   }, [category.id]);
-  console.log(category.id);
+  category.id;
 
-  console.log(posts)
 
   return (
     <section className="flex flex-col gap-4 w-full items-center p-2">

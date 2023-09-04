@@ -35,7 +35,7 @@ export default function SingleContent({ post }: SingleContentProps) {
         </li>
       );
     });
-    console.log(headings);
+    // console.log(headings);
 
     setToc(links);
   }, [post.content.rendered]);

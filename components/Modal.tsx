@@ -17,13 +17,13 @@ interface Search {
 export default function Modal({ handleSearchOpen }: ModalProps) {
   const [posts, setPosts] = useState<SearchPosts[]>([]);
   const handleSearchQuery = async (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let posts = await getPostsBySearch(e.target.value);
     setPosts(posts);
   };
 
   return (
-    <div className="w-screen h-screen z-50 absolute top-0 left-0 bg-gray-50 flex flex-col items-center justify-start pt-40">
+    <div className="w-screen h-screen z-50 absolute top-0 left-0 bg-neutral-500		 flex flex-col items-center justify-start pt-40">
       <span onClick={handleSearchOpen} className="absolute top-0 right-0 p-10">
         <FaTimes size={30} />
       </span>

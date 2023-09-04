@@ -1,4 +1,4 @@
-import { Post } from "./types";
+import { MenuItem, Post } from "./types";
 
 export const fetchPosts = async (): Promise<Post[]> => {
   try {
@@ -53,7 +53,10 @@ export const getPostsBySearch = async (query: string) => {
   }
 };
 
-export const getPaginatedPosts = async (currentPage: number, perPage: number) => {
+export const getPaginatedPosts = async (
+  currentPage: number,
+  perPage: number
+) => {
   try {
     const response = await fetch(
       `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&page=${currentPage}&per_page=${perPage}`
@@ -65,21 +68,52 @@ export const getPaginatedPosts = async (currentPage: number, perPage: number) =>
   }
 };
 
-
 export const fetchTotalPostsCount = async () => {
   try {
     const response = await fetch(
       `https://lovegunitepool.com/wp-json/wp/v2/posts?_fields=id`, // Just fetching ids to get total count
       {
         headers: {
-          'X-WP-Total': 'true', // Include X-WP-Total header to get total count
+          "X-WP-Total": "true", // Include X-WP-Total header to get total count
         },
       }
     );
-    const totalCount = response.headers.get('X-WP-Total');
+    const totalCount = response.headers.get("X-WP-Total");
     return totalCount ? parseInt(totalCount) : 0;
   } catch (error) {
-    console.error('Error fetching total posts count:', error);
+    console.error("Error fetching total posts count:", error);
     return 0;
+  }
+};
+
+export const fetchRankMathSEO = async (slug: string) => {
+  try {
+    const response = await fetch(
+      `https://lovegunitepool.com/wp-json/rankmath/v1/getHead?url=https://lovegunitepool.com/${slug}`
+    );
+    const data = await response.json();
+    return data.head;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+};
+
+export const fetchMenus = async (id: number) => {
+  try {
+    const response = await fetch(
+      `https://lovegunitepool.com/wp-json/wp/v1/menu/${id}`
+    );
+    const data = await response.json();
+    return data.map((item: MenuItem) => {
+      return {
+        ID: item.ID,
+        title: item.title,
+        url: item.url,
+        menu_item_parent: item.menu_item_parent,
+        child: item.menu_item_parent !== "0" ? true : false,
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
   }
 };

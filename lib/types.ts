@@ -58,3 +58,11 @@ export type SearchPosts = {
   id: number
   url: string
 } 
+
+export type MenuItem = {
+  ID: number;
+  title: string;
+  url: string;
+  menu_item_parent: string;
+  child: boolean;
+}

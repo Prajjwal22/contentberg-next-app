@@ -25,7 +25,7 @@ export default function Pagination() {
       const totalItems = await fetchTotalPostsCount();
       setTotalPages(Math.ceil(totalItems / perPage));
       setLoading(false);
-      console.log(currentPage);
+      // console.log(currentPage);
     };
     fetchPaginatedPosts();
   }, [currentPage]);
@@ -42,7 +42,7 @@ export default function Pagination() {
     }
   };
 
-  console.log(posts);
+  // console.log(posts);
   return (
     <div className="">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-5">
