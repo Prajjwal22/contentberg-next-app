@@ -1,8 +1,9 @@
-'use client'
+"use client";
 
+import AuthorBox from "@/components/AuthorBox";
 import { SinglePost } from "@/lib/types";
 import { getReadingTime } from "@/lib/utils";
-import DOMPurify from 'isomorphic-dompurify';
+import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -13,7 +14,6 @@ import { FiClock } from "react-icons/fi";
 interface SingleContentProps {
   post: SinglePost;
 }
-
 
 export default function SingleContent({ post }: SingleContentProps) {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
@@ -60,7 +60,7 @@ export default function SingleContent({ post }: SingleContentProps) {
     [post]
   );
 
-  const path = usePathname()
+  const path = usePathname();
   return (
     <section className="main-content mt-5 p-2">
       <div className="grid grid-cols-3 justify-items-center">
@@ -74,14 +74,17 @@ export default function SingleContent({ post }: SingleContentProps) {
               alt="rp"
             />
             <div className="flex flex-col">
-              <span className="text-bold text-sm">{post.modified_by}</span>
+              <span className="text-bold text-sm">
+                <Link href="/p/about-us">{post.modified_by}</Link>
+              </span>
               <span className="text-gray-500 text-sm">Content Publisher</span>
             </div>
           </div>
           <span className="text-gray-500 text-sm mb-2">
-            JavaScript developer focused mostly on React. Big fan of modern
-            web-development technological solutions. Technical blogger, team
-            player, and gym enthusiast.
+            Scott Keller is a highly skilled and experienced pool industry
+            professional who has dedicated over 20 years of his life to
+            perfecting the art of gunite pool design, construction, and
+            maintenance. 
           </span>
           <div className="w-full rounded h-1 flex flex-col ">
             <div className="w-full rounded h-1 flex flex-col items-center bg-purple-300 relative"></div>
@@ -101,12 +104,31 @@ export default function SingleContent({ post }: SingleContentProps) {
             </div>
             <div className="mt-5 font-bold">Share it with your friends:</div>
             <span className="flex items-center gap-3 mt-3">
-              <FaFacebookF className="text-blue-500 cursor-pointer" size={20}/>
-              <FaEnvelope className="text-red-400 cursor-pointer" size={20}/>
-              <FaTwitter className="text-blue-400 cursor-pointer" size={20}/>
-              <FaCopy onClick={()=> {
-                navigator.clipboard.writeText(process.env.WORDPRESS_SITE_URL + path)
-              }} className="text-slate-500 cursor-pointer" size={20}/>
+            <Link
+            target="_blank"
+            rel="noopener nofollow"
+            href={`https://www.facebook.com/sharer/sharer.php?u=${post.link}`}
+          >  <FaFacebookF className="text-blue-500 cursor-pointer" size={20} /></Link>
+              <Link
+            target="_blank"
+            rel="noopener nofollow"
+            href={`mailto:subject=Check%20This%20Out&body=Hey%20there,%0A%0ACheck%20out%20this%20cool%20website:%20h${post.link}`}
+          >  <FaEnvelope className="text-red-400 cursor-pointer" size={20} /></Link>
+              <Link
+            target="_blank"
+            rel="noopener nofollow"
+            href={`http://twitter.com/share?text=I've something about ${post.title.rendered} you may check out this &url=${post.link}`}
+          >   <FaTwitter className="text-blue-400 cursor-pointer" size={20} /></Link>
+              <FaCopy
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    post.link
+                  );
+                  
+                }}
+                className="text-slate-500 cursor-pointer"
+                size={20}
+              />
             </span>
           </div>
         </div>
@@ -117,6 +139,9 @@ export default function SingleContent({ post }: SingleContentProps) {
             __html: DOMPurify.sanitize(post.content.rendered),
           }}
         ></div>
+      </div>
+      <div className="max-w-3xl m-auto my-2">
+        <AuthorBox post={post} />
       </div>
     </section>
   );

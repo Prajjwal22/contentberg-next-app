@@ -1,4 +1,5 @@
 import { Post } from "@/lib/types";
+import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -20,7 +21,7 @@ export default function TinyCard({ post }: TinyCardProps) {
         />
       </Link>
       <Link href={post.slug}>
-        <span className="text-lg font-bold">{post?.title.rendered}</span>
+        <span className="text-lg font-bold" dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(post?.title.rendered)}}></span>
       </Link>
     </div>
   );

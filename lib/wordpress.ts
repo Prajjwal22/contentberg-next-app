@@ -117,3 +117,33 @@ export const fetchMenus = async (id: number) => {
     console.error("Error fetching posts:", error);
   }
 };
+
+export const fetchPages = async () => {
+  try {
+    const response = await fetch(
+      "https://lovegunitepool.com/wp-json/wp/v2/pages",
+      { cache: "force-cache" }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return []; // Return an empty array or handle the error in an appropriate way
+  }
+};
+
+
+export const getPageBySlug = async (
+  slug: string
+)=> {
+  try {
+    const response = await fetch(
+      `https://lovegunitepool.com/wp-json/wp/v2/pages?slug=${slug}`,
+      { next: { revalidate: 3600 } }
+    );
+    const data = await response.json();
+    return data[0];
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+};

@@ -21,6 +21,7 @@ export type Post = {
     author_link: string;
   };
   jetpack_featured_media_url: string;
+  link:string
 };
 
 export type WpTerm = {
@@ -50,6 +51,7 @@ export interface SinglePost {
     author_link: string;
   };
   jetpack_featured_media_url: string;
+  link:string
 }
 
 

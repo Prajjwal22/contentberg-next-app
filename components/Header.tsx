@@ -51,8 +51,8 @@ export default function Header() {
   };
 
 
-  console.log(menu)
-  console.log(hoveredParent);
+  // console.log(menu)
+  // console.log(hoveredParent);
 
   return (
     <header className="h-20 w-full shadow-md border-t-4 md:mb-6 bg-white border-emerald-950 p-2">
@@ -68,7 +68,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <ul className="hidden md:flex flex-row text-sm w-full gap-8 justify-center">
+        <ul className="hidden md:flex flex-row text-md w-full gap-8 justify-center">
           {menu
             .filter((item) => item.menu_item_parent === "0")
             .map((navItem: MenuItem) => {
