@@ -28,9 +28,8 @@ export default function TextCard({ post }: TextCardProps) {
         dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(category.name)}}>
         </span>
       ))} */}
-      <span className="text-lg md:text-xl font-bold">
-        <Link href={post.slug}>{post.title.rendered}</Link>
-      </span>
+     <Link href={post.slug}> <span className="text-lg md:text-xl font-bold" dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(post.title.rendered)}}>
+      </span></Link>
       <span className="text-sm text-gray-400 font-bold uppercase">
         {dateFormatter(post.modified)} - {readingTime} Mins Read
       </span>
