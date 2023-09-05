@@ -1,5 +1,6 @@
 import { Post } from "@/lib/types";
 import { fetchRankMathSEO, getPostBySlug } from "@/lib/wordpress";
+import DOMPurify from "isomorphic-dompurify";
 import { Metadata, ResolvingMetadata } from "next";
 import React from "react";
 
@@ -21,7 +22,7 @@ export async function generateMetadata(
 
   const post = await getPostBySlug(slug);
   return {
-    title: post?.title.rendered,
+    title: DOMPurify.sanitize(post?.title.rendered + " - "  + process.env.SITE_TITLE ),
     description: post?.excerpt.rendered,
     openGraph: {
       images: post?.jetpack_featured_media_url,
