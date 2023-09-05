@@ -29,7 +29,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
       {/* {post.jetpack_featured_media_url ? ( */}
         <Image
           alt={post?.title.rendered}
-          width={1100}
+          width={900}
           height={600}
           // priority
           src={post?.jetpack_featured_media_url}
