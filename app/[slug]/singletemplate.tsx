@@ -26,7 +26,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
   // console.log(post);
   return (
     <div className="w-full relative">
-      {post.jetpack_featured_media_url ? (
+      {/* {post.jetpack_featured_media_url ? ( */}
         <Image
           alt={post?.title.rendered}
           width={1100}
@@ -34,8 +34,9 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           // priority
           src={post?.jetpack_featured_media_url}
           className="object-cover h-72 md:min-h-600 md:h-600 w-full"
-        />
-      ) : (
+          sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          />
+      {/* ) : (
         <div className="bg-gray-100 min-h-600 h-600 w-full">
           <Lottie
             height={600}
@@ -45,7 +46,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
             loop={true}
           />
         </div>
-      )}
+      )} */}
       <div className="w-full absolute top-0 left-0 p-4 text-white text-xs md:text-sm bg-gradient-to-b from-black/80 to-rgb(0-0-0) ">
         {`Home >> ${
           Array.isArray(categories) && HTMLReactParser(categories[0].name)

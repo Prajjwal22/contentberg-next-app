@@ -12,7 +12,7 @@ export default function AuthorBox({ post }: AuthorProps) {
   return (
     <div className="border rounded p-4 w-full">
       <span className="text-xl font-extrabold">
-        Writtern By {post.modified_by}{" "}
+        Written By {post.modified_by}{" "}
       </span>
       <div className="flex items-start justify-between gap-4 mt-5">
         <Image
