@@ -14,11 +14,13 @@ export default function Header() {
   const [screenWidth, setScreenWidth] = useState<number>(0);
   const [isOpen, setIsOpen] = useState(false);
   const [menu, setMenu] = useState<MenuItem[]>([]);
+  const [fixScrollbar, setFixScrollbar] =useState(false)
 
   const [hoveredParent, setHoveredParent] = useState<number | null>(null);
 
   const handleMenuOpen = () => {
     setShowMenu(!showMenu);
+    setFixScrollbar(!fixScrollbar);
   };
 
   useEffect(() => {
@@ -35,6 +37,7 @@ export default function Header() {
         window.removeEventListener("resize", handleResize);
       };
     }
+    document.body.classList.add('dfsdsd')
   }, []);
 
   useEffect(() => {
@@ -119,14 +122,31 @@ export default function Header() {
             }  flex items-center justify-around bg-black text-white`}
           >
             <ul className="flex justify-between items-stretch flex-col gap-12">
-              <li className="uppercase font-bold text-4xl">
-                Insurabce Depreciation Waiver
-              </li>
-              <li className="uppercase font-bold text-4xl">iOS</li>
-              <li className="uppercase font-bold text-4xl">Credit Card</li>
-              <li className="uppercase font-bold text-4xl">
-                Bike EMI Calculator
-              </li>
+              {menu
+            .filter((item) => item.menu_item_parent === "0")
+            .map((navItem: MenuItem) => {
+              const childItems = menu.filter(
+                (childItem) =>
+                  parseInt(childItem.menu_item_parent) === navItem.ID
+              );
+
+              return (
+                <li
+                  key={navItem.ID}
+                  className="uppercase font-bold text-4xl"
+                  onMouseEnter={() => setHoveredParent(navItem.ID)}
+                  onMouseLeave={() => setHoveredParent(null)}
+                >
+                  <Link href={navItem.url}>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(navItem.title),
+                      }}
+                    ></span>
+                  </Link>
+                </li>
+              );
+            })}
             </ul>
           </nav>
         ) : null}

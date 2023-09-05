@@ -56,7 +56,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
           <div className="flex gap-2 flex-wrap">
             {Array.isArray(categories) &&
               categories.map((category) => (
-                <Link key={category.id} href={category.link}>
+                <Link key={category.id} href={`/${category.link}`}>
                   <span
                     className="text-xs px-2 py-1 bg-blue-700 text-white uppercase font-bold"
                     dangerouslySetInnerHTML={{

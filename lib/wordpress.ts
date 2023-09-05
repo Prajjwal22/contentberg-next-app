@@ -32,9 +32,10 @@ export const getPostBySlug = async (
 export const getPostsByCategory = async (id: number) => {
   try {
     const response = await fetch(
-      `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&categories=${id}&per_page=4`
+      `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&categories=${id}&per_page=8`
     );
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -68,10 +69,44 @@ export const getPaginatedPosts = async (
   }
 };
 
+export const getPaginatedPostsByCategory = async (
+  currentPage: number,
+  perPage: number,
+  catID: number
+) => {
+  try {
+    const response = await fetch(
+      `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&page=${currentPage}&per_page=${perPage}&categories=${catID}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+};
+
 export const fetchTotalPostsCount = async () => {
   try {
     const response = await fetch(
       `https://lovegunitepool.com/wp-json/wp/v2/posts?_fields=id`, // Just fetching ids to get total count
+      {
+        headers: {
+          "X-WP-Total": "true", // Include X-WP-Total header to get total count
+        },
+      }
+    );
+    const totalCount = response.headers.get("X-WP-Total");
+    return totalCount ? parseInt(totalCount) : 0;
+  } catch (error) {
+    console.error("Error fetching total posts count:", error);
+    return 0;
+  }
+};
+
+export const fetchTotalCategoryPostsCount = async (catID:number) => {
+  try {
+    const response = await fetch(
+      `https://lovegunitepool.com/wp-json/wp/v2/posts?_fields=id&categories=${catID}`, // Just fetching ids to get total count
       {
         headers: {
           "X-WP-Total": "true", // Include X-WP-Total header to get total count
@@ -132,10 +167,7 @@ export const fetchPages = async () => {
   }
 };
 
-
-export const getPageBySlug = async (
-  slug: string
-)=> {
+export const getPageBySlug = async (slug: string) => {
   try {
     const response = await fetch(
       `https://lovegunitepool.com/wp-json/wp/v2/pages?slug=${slug}`,
@@ -146,4 +178,12 @@ export const getPageBySlug = async (
   } catch (error) {
     console.error("Error fetching posts:", error);
   }
+};
+
+export const getCatIDBySlug = async (slug: string) => {
+  let id = await fetch(
+    `https://lovegunitepool.com/wp-json/wp/v2/categories?slug=${slug}`
+  );
+  let category = await id.json();
+  return category[0]
 };

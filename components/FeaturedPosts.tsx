@@ -19,7 +19,7 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
             What&apos;s New?
           </span>
 
-          {posts.splice(1, 4).map((post) => (
+          {posts.splice(1, 6).map((post) => (
             <TextCard key={post.id} post={post} />
           ))}
         </div>

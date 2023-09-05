@@ -30,8 +30,7 @@ export default function BigCard({ posts }: BigCardProps) {
         />
       </div>
      <Link href={posts[0]?.slug}>
-        <span className="text-xl md:text-3xl font-bold mb-3">
-          {posts[0]?.title?.rendered}
+        <span className="text-xl md:text-3xl font-bold mb-3" dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(posts[0]?.title?.rendered)}}>
         </span>
       </Link>
       <span className="text-sm font-bold text-gray-400 mb-3 uppercase">
