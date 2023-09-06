@@ -48,11 +48,13 @@ export default function SingleTemplate({ post }: SinleContentProps) {
         </div>
       )} */}
       <div className="w-full absolute top-0 left-0 p-4 text-white text-xs md:text-sm bg-gradient-to-b from-black/80 to-rgb(0-0-0) ">
-        {`Home >> ${
+        {/* {`Home >> ${
           Array.isArray(categories) && HTMLReactParser(categories[0].name)
-        } >> ${HTMLReactParser(post?.title?.rendered)}`}
+        } >> ${HTMLReactParser(post?.title?.rendered)}`} */}
+
+        <Link href="/">Home</Link> &gt;&gt; {Array.isArray(categories) && <Link href={`/${categories[0].link}`}>{HTMLReactParser(categories[0].name)}</Link>} &gt;&gt; {HTMLReactParser(post?.title?.rendered)}
       </div>
-      <div className="flex items-center justify-between absolute  bottom-0 p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0) ">
+      <div className="flex items-center justify-between absolute  bottom-0 p-4 md:p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0) ">
         <div className="flex flex-col items-start gap-2 hover:-translate-y-4 ease-in-out transition-all duration-300">
           <div className="flex gap-2 flex-wrap">
             {Array.isArray(categories) &&
@@ -73,13 +75,13 @@ export default function SingleTemplate({ post }: SinleContentProps) {
               __html: DOMPurify.sanitize(post?.title?.rendered),
             }}
           ></h1>
-          <div className="uppercase font-bold text-white flex flex-row flex-wrap gap-2 text-xs">
+          <div className="font-bold text-white flex flex-row flex-wrap gap-2 text-xs">
             <span>
               Reviewed By <Link href="/p/author-james-atlas/">James Atlas</Link>
             </span>{" "}
             -{" "}
             <span>
-              Fact checked by{" "}
+              Fact Checked by{" "}
               <Link href="/p/author-jeremy-hine/">Jeremy Hine</Link>
             </span>{" "}
             - <span>{dateFormatter(post?.date_gmt)}</span> -

@@ -24,6 +24,7 @@ export default async function SinglePost({ params: { slug } }: Props) {
     author: post?.modified_by,
     dateModified: JSON.stringify(post?.modified),
     url: "https://loveguinitepool.com/" + post?.slug,
+    inLanguage:'en-US',
   };
 
   if (!post) notFound();

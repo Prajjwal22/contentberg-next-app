@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 w-full p-8 mt-10">
         <div className="flex flex-col items-center justify-center gap-4">
-            <ul className="list-none flex flex-wrap items-center gap-4 font-bold">
+            <ul className="list-none flex flex-wrap items-center justify-center gap-4 font-bold">
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/p/about-us">About</Link></li>
                 <li><Link href="/p/contact-us">Contact</Link></li>

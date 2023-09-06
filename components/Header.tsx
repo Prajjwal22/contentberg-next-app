@@ -14,13 +14,14 @@ export default function Header() {
   const [screenWidth, setScreenWidth] = useState<number>(0);
   const [isOpen, setIsOpen] = useState(false);
   const [menu, setMenu] = useState<MenuItem[]>([]);
-  const [fixScrollbar, setFixScrollbar] =useState(false)
 
   const [hoveredParent, setHoveredParent] = useState<number | null>(null);
 
   const handleMenuOpen = () => {
     setShowMenu(!showMenu);
-    setFixScrollbar(!fixScrollbar);
+ !showMenu ?  
+      document.body.classList.add("fix-scroll-bar") : document.body.classList.remove("fix-scroll-bar")
+  
   };
 
   useEffect(() => {
@@ -112,9 +113,9 @@ export default function Header() {
           className="ml-auto md:ml-0 mr-5"
           onClick={() => handleSearchOpen(true)}
         >
-          <FaSearch size={20} />
+          <FaSearch className="cursor-pointer" size={20} />
         </div>
-        {isOpen && <Modal handleSearchOpen={() => handleSearchOpen(false)} />}
+        {isOpen && <Modal handleSearchOpen={() => handleSearchOpen(false)}/>}
         {screenWidth < 770 ? (
           <nav
             className={` absolute h-webkit-fill-available w-screen top-20 transition-all duration-500 z-50 ${

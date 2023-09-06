@@ -19,6 +19,8 @@ export default function SingleContent({ post }: SingleContentProps) {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const [toc, setToc] = useState<JSX.Element[]>([]);
 
+  const router = useRouter();
+
   useEffect(() => {
     const parsedContent = DOMPurify.sanitize(post.content.rendered);
     const contentDiv = document.createElement("div");
@@ -30,8 +32,16 @@ export default function SingleContent({ post }: SingleContentProps) {
       const linkId = String(heading.textContent).split(" ").join("_");
 
       return (
-        <li className="mb-1" key={linkId}>
-          <Link href={`#${linkId}`}>{headingText}</Link>
+        <li
+          className="mb-2 cursor-pointer"
+          key={linkId}
+          onClick={() => {
+            router.push(`#${linkId}`);
+          }}
+        >
+          {/* <Link href={`#${linkId}`}> */}
+          {headingText}
+          {/* </Link> */}
         </li>
       );
     });
@@ -84,7 +94,7 @@ export default function SingleContent({ post }: SingleContentProps) {
             Scott Keller is a highly skilled and experienced pool industry
             professional who has dedicated over 20 years of his life to
             perfecting the art of gunite pool design, construction, and
-            maintenance. 
+            maintenance.
           </span>
           <div className="w-full rounded h-1 flex flex-col ">
             <div className="w-full rounded h-1 flex flex-col items-center bg-purple-300 relative"></div>
@@ -104,27 +114,36 @@ export default function SingleContent({ post }: SingleContentProps) {
             </div>
             <div className="mt-5 font-bold">Share it with your friends:</div>
             <span className="flex items-center gap-3 mt-3">
-            <Link
-            target="_blank"
-            rel="noopener nofollow"
-            href={`https://www.facebook.com/sharer/sharer.php?u=${post.link}`}
-          >  <FaFacebookF className="text-blue-500 cursor-pointer" size={20} /></Link>
               <Link
-            target="_blank"
-            rel="noopener nofollow"
-            href={`mailto:subject=Check%20This%20Out&body=Hey%20there,%0A%0ACheck%20out%20this%20cool%20website:%20h${post.link}`}
-          >  <FaEnvelope className="text-red-400 cursor-pointer" size={20} /></Link>
+                target="_blank"
+                rel="noopener nofollow"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${post.link}`}
+              >
+                {" "}
+                <FaFacebookF
+                  className="text-blue-500 cursor-pointer"
+                  size={20}
+                />
+              </Link>
               <Link
-            target="_blank"
-            rel="noopener nofollow"
-            href={`http://twitter.com/share?text=I've something about ${post.title.rendered} you may check out this &url=${post.link}`}
-          >   <FaTwitter className="text-blue-400 cursor-pointer" size={20} /></Link>
+                target="_blank"
+                rel="noopener nofollow"
+                href={`mailto:subject=Check%20This%20Out&body=Hey%20there,%0A%0ACheck%20out%20this%20cool%20website:%20h${post.link}`}
+              >
+                {" "}
+                <FaEnvelope className="text-red-400 cursor-pointer" size={20} />
+              </Link>
+              <Link
+                target="_blank"
+                rel="noopener nofollow"
+                href={`http://twitter.com/share?text=I've something about ${post.title.rendered} you may check out this &url=${post.link}`}
+              >
+                {" "}
+                <FaTwitter className="text-blue-400 cursor-pointer" size={20} />
+              </Link>
               <FaCopy
                 onClick={() => {
-                  navigator.clipboard.writeText(
-                    post.link
-                  );
-                  
+                  navigator.clipboard.writeText(post.link);
                 }}
                 className="text-slate-500 cursor-pointer"
                 size={20}
@@ -134,7 +153,7 @@ export default function SingleContent({ post }: SingleContentProps) {
         </div>
 
         <div
-          className="md:col-span-2 col-span-3 text-gray-600 leading-8 list-inside"
+          className="md:col-span-2 col-span-3 text-gray-600 leading-8 list-inside entry-content"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(post.content.rendered),
           }}

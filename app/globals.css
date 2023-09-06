@@ -58,3 +58,112 @@ ol, ul {
 .main-content p {
   margin-bottom: 20px;
 }
+
+.has-background {
+  padding: 10px 20px;
+}
+
+.entry-content a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color:rgb(90, 90, 240)
+}
+
+.wp-block-table .has-fixed-layout {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5em;
+  border-spacing: 0;
+  border-width: 1px 0 0 1px;
+}
+
+.wp-block-table thead {
+  border-bottom: 3px solid;
+}
+
+.wp-block-table table {
+  border-collapse: collapse;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.wp-block-table .has-fixed-layout td, .wp-block-table .has-fixed-layout th {
+  word-break: break-word;
+}
+
+.wp-block-table th {
+  border: 1px solid;
+  padding: 0.5em;
+  font-weight: 700;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.wp-block-table td, .wp-block-table th {
+  border: 1px solid;
+  padding: 0.5em;
+}
+
+
+.is-style-rounded {
+  border-radius: 100%;
+}
+
+
+.is-style-rounded img {
+  border-radius: 100%;
+}
+
+.has-text-align-center {
+  text-align: center;
+}
+
+.is-content-justification-center {
+  justify-content: center;
+}
+.is-layout-flex {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+}
+
+
+.wp-block-social-links {
+  background: none;
+  box-sizing: border-box;
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+  text-indent: 0;
+  margin-bottom: 20px;
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px,1px,1px,1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute!important;
+  width: 1px;
+  word-wrap: normal!important;
+}
+
+.aligncenter {
+  justify-content: center;
+}
+
+.fix-scroll-bar {
+overflow: hidden;
+}
