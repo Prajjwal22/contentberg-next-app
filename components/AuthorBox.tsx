@@ -29,7 +29,7 @@ export default function AuthorBox({ post }: AuthorProps) {
             perfecting the art of gunite pool design, construction, and
             maintenance.
           </p>
-          <span className="md:flex flex-row gap-4 hidden">
+            <span className="flex flex-row gap-4 ">
             <Link href="https://www.facebook.com/profile.php?id=100090542671405" target="_blank" rel="nofollow"><FaFacebookF size={15} /></Link>
             <Link href="https://twitter.com/ScottKelle75983" target="_blank" rel="nofollow"><FaTwitter size={15} /></Link>
             <Link href="https://www.linkedin.com/in/scott-keller-63433526b/" target="_blank" rel="nofollow"><FaLinkedin size={15} /></Link>
