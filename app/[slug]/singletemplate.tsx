@@ -54,7 +54,7 @@ export default function SingleTemplate({ post }: SinleContentProps) {
 
         <Link href="/">Home</Link> &gt;&gt; {Array.isArray(categories) && <Link href={`/${categories[0].link}`}>{HTMLReactParser(categories[0].name)}</Link>} &gt;&gt; {HTMLReactParser(post?.title?.rendered)}
       </div>
-      <div className="flex items-center justify-between absolute  bottom-0 p-4 md:p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0) ">
+      <div className="flex md:gap-3 items-center justify-between absolute  bottom-0 p-4 md:p-9 w-full bg-gradient-to-t from-black/80 to-rgb(0-0-0) ">
         <div className="flex flex-col items-start gap-2 hover:-translate-y-4 ease-in-out transition-all duration-300">
           <div className="flex gap-2 flex-wrap">
             {Array.isArray(categories) &&
