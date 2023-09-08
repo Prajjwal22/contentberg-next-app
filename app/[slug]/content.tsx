@@ -74,7 +74,7 @@ export default function SingleContent({ post }: SingleContentProps) {
   return (
     <section className="main-content mt-5 p-2">
       <div className="grid grid-cols-3 justify-items-center">
-        <div className="col-span-1 flex-col items-center gap-4 sticky w-9/12 top-1 h-screen hidden md:flex">
+        <div className="col-span-1 flex-col items-center gap-4 sticky w-9/12 top-1 h-fit hidden md:flex">
           <div className="flex flex-row items-center gap-2">
             <Image
               src="/profile.webp"
