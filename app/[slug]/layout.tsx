@@ -1,5 +1,4 @@
-import { Post } from "@/lib/types";
-import { fetchRankMathSEO, getPostBySlug } from "@/lib/wordpress";
+import {  getPostBySlug } from "@/lib/wordpress";
 import DOMPurify from "isomorphic-dompurify";
 import { Metadata, ResolvingMetadata } from "next";
 import React from "react";

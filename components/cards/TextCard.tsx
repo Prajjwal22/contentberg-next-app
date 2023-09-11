@@ -1,6 +1,5 @@
-import { Post, WpTerm } from "@/lib/types";
+import { Post } from "@/lib/types";
 import { dateFormatter, getReadingTime } from "@/lib/utils";
-import { read } from "fs";
 import * as DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import React, { useMemo } from "react";

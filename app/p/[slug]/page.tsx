@@ -1,9 +1,6 @@
-import SingleContent from "@/app/[slug]/content";
 import {
   fetchPages,
-  fetchPosts,
   getPageBySlug,
-  getPostBySlug,
 } from "@/lib/wordpress";
 import DOMPurify from "isomorphic-dompurify";
 
@@ -17,7 +14,6 @@ export default async function SinglePage({ params: { slug } }: Props) {
 
   const page = await getPageBySlug(slug);
 
-  console.log(page);
 
   return (
     <>

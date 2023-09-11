@@ -1,8 +1,6 @@
 import { getPostsBySearch } from "@/lib/wordpress";
 import React, { ChangeEvent, useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import SmallCard from "./cards/SmallCard";
-import TinyCard from "./cards/TinyCard";
 import { Post, SearchPosts } from "@/lib/types";
 import SearchCard from "./cards/SearchCard";
 
@@ -17,7 +15,6 @@ interface Search {
 export default function Modal({ handleSearchOpen }: ModalProps) {
   const [posts, setPosts] = useState<SearchPosts[]>([]);
   const handleSearchQuery = async (e: ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.value);
     let posts = await getPostsBySearch(e.target.value);
     setPosts(posts);
   };

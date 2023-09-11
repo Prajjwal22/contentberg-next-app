@@ -19,7 +19,6 @@ export async function generateMetadata(
     parent: ResolvingMetadata
   ): Promise<Metadata> {
     const slug = params.slug;
-    console.log(slug)
   
     const page = await getPageBySlug(slug)
     return {

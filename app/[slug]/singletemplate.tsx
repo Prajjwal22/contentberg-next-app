@@ -2,13 +2,11 @@
 
 import { dateFormatter, getReadingTime } from "@/lib/utils";
 import DOMPurify from "isomorphic-dompurify";
-import Lottie from "lottie-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useMemo } from "react";
 import { FaFacebookF, FaReddit, FaTwitter } from "react-icons/fa";
-import ImagePlaceholder from "../../lottie/animation_llncsb4x.json";
-import { Post, SinglePost, WpTerm } from "@/lib/types";
+import {  SinglePost } from "@/lib/types";
 import HTMLReactParser from "html-react-parser";
 
 interface SinleContentProps {
@@ -23,7 +21,6 @@ export default function SingleTemplate({ post }: SinleContentProps) {
 
   const categories = post._embedded?.["wp:term"]?.[0];
 
-  // console.log(post);
   return (
     <div className="w-full relative">
       {/* {post.jetpack_featured_media_url ? ( */}

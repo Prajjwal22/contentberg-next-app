@@ -1,16 +1,16 @@
 import CategoryPagination from "@/components/CategoryPagination";
 import SectionHeader from "@/components/SectionHeader";
-import { getCatIDBySlug } from "@/lib/wordpress";
+import { getCatIDBySlug, getPostsByCategory } from "@/lib/wordpress";
 import React from "react";
 
 type Props = {
   params: {
-    slug: string;
+    subcategory: string;
   };
 };
 
-export default async function CategoryPage({ params: { slug } }: Props) {
-  const category = await getCatIDBySlug(slug);
+export default async function CategoryPage({ params: { subcategory } }: Props) {
+  const category = await getCatIDBySlug(subcategory);
 
   return (
     <main className="max-w-6xl m-auto my-6 p-2">

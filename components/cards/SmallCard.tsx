@@ -1,8 +1,8 @@
-import { Post, SinglePost } from "@/lib/types";
+import {  SinglePost } from "@/lib/types";
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React from "react";
 import * as DOMPurify from "isomorphic-dompurify";
-import { dateFormatter, getReadingTime } from "@/lib/utils";
+import { dateFormatter, } from "@/lib/utils";
 import Link from "next/link";
 
 interface SmallCardProps {

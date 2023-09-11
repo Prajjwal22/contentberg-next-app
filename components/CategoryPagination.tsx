@@ -2,9 +2,7 @@
 
 import { Post } from "@/lib/types";
 import {
-  fetchPosts,
   fetchTotalCategoryPostsCount,
-  fetchTotalPostsCount,
   getPaginatedPostsByCategory,
 } from "@/lib/wordpress";
 import React, { useEffect, useState } from "react";
@@ -30,7 +28,6 @@ export default function CategoryPagination({ catID }: Category) {
       const totalItems = await fetchTotalCategoryPostsCount(catID);
       setTotalPages(Math.ceil(totalItems / perPage));
       setLoading(false);
-      // console.log(currentPage);
     };
     fetchPaginatedPosts();
   }, [currentPage]);
@@ -47,7 +44,6 @@ export default function CategoryPagination({ catID }: Category) {
     }
   };
 
-  // console.log(posts);
   return (
     <div className="">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-5">

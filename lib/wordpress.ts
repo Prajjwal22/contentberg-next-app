@@ -34,7 +34,6 @@ export const getPostsByCategory = async (id: number) => {
       `https://lovegunitepool.com/wp-json/wp/v2/posts?_embed&categories=${id}&per_page=8`
     );
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching posts:", error);

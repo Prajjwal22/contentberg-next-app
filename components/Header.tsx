@@ -55,8 +55,6 @@ export default function Header() {
   };
 
 
-  // console.log(menu)
-  // console.log(hoveredParent);
 
   return (
     <header className="h-20 w-full shadow-md border-t-4 md:mb-6 bg-white border-emerald-950 p-2">

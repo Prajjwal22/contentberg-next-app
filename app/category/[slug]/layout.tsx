@@ -1,5 +1,4 @@
-import { Post } from "@/lib/types";
-import { fetchRankMathSEO, getCatIDBySlug, getPostBySlug } from "@/lib/wordpress";
+import { getCatIDBySlug, } from "@/lib/wordpress";
 import { Metadata, ResolvingMetadata } from "next";
 import React from "react";
 

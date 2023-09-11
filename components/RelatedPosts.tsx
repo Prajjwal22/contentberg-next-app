@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import SmallCard from "./cards/SmallCard";
 import { getPostsByCategory } from "@/lib/wordpress";
 import { Post } from "@/lib/types";
 import TinyCard from "./cards/TinyCard";
