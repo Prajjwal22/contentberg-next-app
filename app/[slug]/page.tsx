@@ -78,7 +78,8 @@ export default async function SinglePost({ params: { slug } }: Props) {
               "@id":
                 process.env.WORDPRESS_SITE_URL +
                 "category/" +
-              Array.isArray(categories) &&  categories[0].slug,
+                ((Array.isArray(categories) && categories[0].slug) ||
+                  "cateslug"),
               name: Array.isArray(categories) && categories[0].name,
             },
           },
