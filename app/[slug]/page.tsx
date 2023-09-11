@@ -3,7 +3,7 @@ import SingleTemplate from "./singletemplate";
 import SingleContent from "./content";
 import RelatedPosts from "@/components/RelatedPosts";
 import { notFound } from "next/navigation";
-import { Article } from "schema-dts";
+import { Article, BlogPosting } from "schema-dts";
 
 type Props = {
   params: {
@@ -14,17 +14,86 @@ type Props = {
 export default async function SinglePost({ params: { slug } }: Props) {
   const post = await getPostBySlug(slug);
   const categories = post?._embedded?.["wp:term"]?.[0];
-  const jsonLd: Article = {
-    "@type": "Article",
+  const jsonLd: BlogPosting = {
+    "@type": "BlogPosting",
     headline: post?.title.rendered,
     image: post?.jetpack_featured_media_url,
     description: post?.excerpt.rendered,
     articleBody: post?.content.rendered,
     articleSection: Array.isArray(categories) && categories[0].name,
-    author: post?.modified_by,
     dateModified: JSON.stringify(post?.modified),
     url: "https://loveguinitepool.com/" + post?.slug,
-    inLanguage:'en-US',
+    inLanguage: "en-US",
+    author: {
+      "@type": "Person",
+      "@id":
+        post?.author_info?.author_link ||
+        process.env.WORDPRESS_SITE_URL + "/p/about-us",
+      name: post?.author_info?.display_name || "Editorial Staff",
+      url:
+        post?.author_info?.author_link ||
+        process.env.WORDPRESS_SITE_URL + "/p/about-us",
+      image: {
+        "@type": "ImageObject",
+        "@id": "/profile.webp",
+        url: "/profile.webp",
+        caption: post?.author_info?.display_name || "Editorial Staff",
+        inLanguage: "en-US",
+      },
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": process.env.WORDPRESS_SITE_URL,
+      name: process.env.SITE_TITLE,
+      url: process.env.WORDPRESS_SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        "@id": process.env.WORDPRESS_SITE_URL + "#logo",
+        url: "/lgp.webp",
+        contentUrl: "/lgp.webp",
+        caption: process.env.SITE_TITLE,
+        inLanguage: "en-US",
+      },
+    },
+    isPartOf: {
+      "@type": "WebPage",
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        "@id": post?.link + "/#breadcrumb",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            item: {
+              "@type": "Thing",
+              "@id": process.env.WORDPRESS_SITE_URL,
+              name: "Home",
+            },
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            item: {
+              "@type": "Thing",
+              "@id":
+                process.env.WORDPRESS_SITE_URL +
+                "category/" +
+                categories[0].slug,
+              name: Array.isArray(categories) && categories[0].name,
+            },
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            item: {
+              "@type": "Thing",
+              "@id": post?.link,
+              name: post?.title.rendered,
+            },
+          },
+        ],
+      },
+    },
   };
 
   if (!post) notFound();

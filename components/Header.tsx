@@ -19,9 +19,9 @@ export default function Header() {
 
   const handleMenuOpen = () => {
     setShowMenu(!showMenu);
- !showMenu ?  
-      document.body.classList.add("fix-scroll-bar") : document.body.classList.remove("fix-scroll-bar")
-  
+    !showMenu
+      ? document.body.classList.add("fix-scroll-bar")
+      : document.body.classList.remove("fix-scroll-bar");
   };
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Header() {
         window.removeEventListener("resize", handleResize);
       };
     }
-    document.body.classList.add('dfsdsd')
+    document.body.classList.add("dfsdsd");
   }, []);
 
   useEffect(() => {
@@ -53,8 +53,6 @@ export default function Header() {
   const handleSearchOpen = (option: boolean) => {
     setIsOpen(option);
   };
-
-
 
   return (
     <header className="h-20 w-full shadow-md border-t-4 md:mb-6 bg-white border-emerald-950 p-2">
@@ -113,7 +111,7 @@ export default function Header() {
         >
           <FaSearch className="cursor-pointer" size={20} />
         </div>
-        {isOpen && <Modal handleSearchOpen={() => handleSearchOpen(false)}/>}
+        {isOpen && <Modal handleSearchOpen={() => handleSearchOpen(false)} />}
         {screenWidth < 770 ? (
           <nav
             className={` absolute h-webkit-fill-available w-screen top-20 transition-all duration-500 z-50 ${
@@ -122,30 +120,30 @@ export default function Header() {
           >
             <ul className="flex justify-between items-stretch flex-col gap-12">
               {menu
-            .filter((item) => item.menu_item_parent === "0")
-            .map((navItem: MenuItem) => {
-              const childItems = menu.filter(
-                (childItem) =>
-                  parseInt(childItem.menu_item_parent) === navItem.ID
-              );
+                .filter((item) => item.menu_item_parent === "0")
+                .map((navItem: MenuItem) => {
+                  const childItems = menu.filter(
+                    (childItem) =>
+                      parseInt(childItem.menu_item_parent) === navItem.ID
+                  );
 
-              return (
-                <li
-                  key={navItem.ID}
-                  className="uppercase font-bold text-4xl"
-                  onMouseEnter={() => setHoveredParent(navItem.ID)}
-                  onMouseLeave={() => setHoveredParent(null)}
-                >
-                  <Link href={navItem.url}>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(navItem.title),
-                      }}
-                    ></span>
-                  </Link>
-                </li>
-              );
-            })}
+                  return (
+                    <li
+                      key={navItem.ID}
+                      className="uppercase font-bold text-4xl"
+                      onMouseEnter={() => setHoveredParent(navItem.ID)}
+                      onMouseLeave={() => setHoveredParent(null)}
+                    >
+                      <Link href={navItem.url}>
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: DOMPurify.sanitize(navItem.title),
+                          }}
+                        ></span>
+                      </Link>
+                    </li>
+                  );
+                })}
             </ul>
           </nav>
         ) : null}
