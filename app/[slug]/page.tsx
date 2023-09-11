@@ -16,7 +16,7 @@ export default async function SinglePost({ params: { slug } }: Props) {
   const categories = post?._embedded?.["wp:term"]?.[0];
   const jsonLd: BlogPosting = {
     "@type": "BlogPosting",
-    headline: post?.title.rendered,
+    "@id": post?.link+"#richsnippet",
     image: post?.jetpack_featured_media_url,
     description: post?.excerpt.rendered,
     articleBody: post?.content.rendered,
